@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<title>POSClient Test</title>
+	 
+	</head>
+	<body>
+
+		<!-- The main layout -->
+		<div id="topbar"><div id="topbar-content"><span id="username"></span><span id="userbalance"></span></div></div>
+		<div id="main"><div id="cart"></div></div>
+		<div id="bottombar"><div id="bottombar-content"><span id="inputtext"></span><span id="totalprice"></span></div></div>
+
+		<!-- These will only be displayed when needed -->
+		<div id="throbber"></div>
+		<div id="errorbox"><div id="errorbox-content"><span id="error-message"></span></div></div>
+
+		<!-- Javascript at the end to speed up loading (so they say) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<script src="js/cart.js"></script>
+		<script src="js/user.js"></script>
+		<script src="js/purchase.js"></script>
+		<script src="js/view.js"></script>
+		<script src="js/input.js"></script>
+		<script src="js/posclient.js"></script>
+	</body>
+</html>
