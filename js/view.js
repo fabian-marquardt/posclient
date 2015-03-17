@@ -4,7 +4,16 @@ var BaseView = function () {
 }
 
 BaseView.prototype.confirm = function () {
-	this.purchase_controller.processIdentifier(this.input_text);
+	if(this.input_text != '') {
+		// If something was typed, we check the identifier
+		this.purchase_controller.processIdentifier(this.input_text);
+		this.input_text = '';
+	}
+	else {
+		// If not, we try to checkout that cart
+		this.purchase_controller.checkout();
+	}
+	
 };
 
 BaseView.prototype.add = function () {
@@ -29,10 +38,10 @@ BaseView.prototype.updateCart = function (cart) {
 
 	total_price = 0;
 
-	for (var i = 0; i < cart.cart_items.length; i++)
+	for (key in cart.cart_items)
 	{
-		item = cart.cart_items[i];
-		price = item.unit_price / 100;
+		item = cart.cart_items[key];
+		price = item.unit_price * item.quantity / 100;
 		total_price += price;
 
 		$('#cart').append('<div> \
@@ -62,6 +71,24 @@ BaseView.prototype.setReady = function () {
 
 BaseView.prototype.showErrorUnknown = function () {
 	$('#error-message').text('Unknown product or user.');
+	$('#errorbox').show();
+
+	setTimeout(function() {
+        $('#errorbox').hide();
+    }, 3000);
+};
+
+BaseView.prototype.showErrorCart = function () {
+	$('#error-message').text('Something went wrong while updating your cart. Please check your cart and scan the last item again.');
+	$('#errorbox').show();
+
+	setTimeout(function() {
+        $('#errorbox').hide();
+    }, 3000);
+};
+
+BaseView.prototype.showErrorCheckout = function () {
+	$('#error-message').text('Not ready to check out. Login a user and at least one product.');
 	$('#errorbox').show();
 
 	setTimeout(function() {
